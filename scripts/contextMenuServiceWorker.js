@@ -53,6 +53,7 @@ const generate = async (prompt) => {
 
 const generateCompletionAction = async (info) => {
     try {
+        // sendMessage('generating...');
         const { selectionText } = info;
         const basePromptPrefix = `
         Write me a positive reply to the tweet below in less than 200 characters.
@@ -63,6 +64,7 @@ const generateCompletionAction = async (info) => {
         const baseCompletion = await generate(`${basePromptPrefix}"${selectionText}"`);
         // console.log(`${basePromptPrefix}"${selectionText}"`)
         console.log(baseCompletion.text)
+        sendMessage(baseCompletion.text);
     } catch (error) {
         console.log(error);
         sendMessage(error.toString());
